@@ -1,0 +1,29 @@
+/* width 880->1020 */
+.bkp {table-layout: fixed; background-color:#eee; width: 1020px; vertical-align: middle;  
+	border-collapse: collapse; text-align: center;
+	}
+
+.sd {table-layout: fixed;border: #443 3px solid;width: 441px; height:441px; background-color:#fff; 
+      vertical-align: middle;  border-collapse: collapse; text-align: center;}
+
+.medsd {table-layout: fixed;border: #443 3px solid;width: 541px; height:541px; background-color:#fff; 
+      vertical-align: middle;  border-collapse: collapse; text-align: center;}
+
+.largesd {table-layout: fixed;border: #443 3px solid;width: 641px; height:641px; background-color:#fff; 
+      vertical-align: middle;  border-collapse: collapse; text-align: center;}
+
+
+td.xx { border-right: #999 1px solid; border-top: #999 1px solid; width: 40px; height: 40px; text-align: center; LINE-height:30px; }
+td.rr { border-right: #443 2px solid; border-top: #999 1px solid; width: 40px; height: 40px; text-align: center; LINE-height:30px;}
+td.bb { border-right: #999 1px solid; border-top: #999 1px solid; border-bottom: #443 2px solid; width: 40px; height: 40px; text-align: center;  LINE-height:30px; }
+td.br { border-right: #443 2px solid; border-top: #999 1px solid; border-bottom: #443 2px solid; width: 40px; height: 40px; text-align: center;  LINE-height:30px; }
+
+.fix {FONT-SIZE: 25px; border:none;background-color: transparent; WIDTH: 39px;HEIGHT: 38px; LINE-HEIGHT: 38px;TEXT-ALIGN: center; margin:0px; COLOR: #000000; FONT-FAMILY:  Verdana;}
+.medfix {FONT-SIZE: 28px; border:none;background-color: transparent; WIDTH: 49px;HEIGHT: 49px; LINE-HEIGHT: 48px;TEXT-ALIGN: center; margin:0px; COLOR: #000000; FONT-FAMILY:  Verdana;}
+.largefix {FONT-SIZE: 30px; border:none;background-color: transparent; WIDTH: 59px;HEIGHT: 59px; LINE-HEIGHT: 58px;TEXT-ALIGN: center; margin:0px; COLOR: #000000; FONT-FAMILY:  Verdana;}
+
+.pcad {FONT-SIZE: 11px; border:none;background-color: transparent; WIDTH: 40px;HEIGHT: 38px; LINE-HEIGHT: 12px;TEXT-ALIGN: center; margin:0px; COLOR: #0000FF; FONT-FAMILY:  Verdana;}
+
+.button {width:100px;}
+
+a {text-decoration:none;}
