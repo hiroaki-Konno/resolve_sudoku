@@ -70,7 +70,7 @@ class Sudoku():
         # 横座標 xの縦列
         x_width = self.get_tate_sudoku_list()[x - 1]
         # 3 * 3 のブロック
-        block_33 = self.get33_block()[self.judge_block33(x, y)]
+        block_33 = self.get33_block()[self.judge_block33(x, y)-1]
 
         print("y_high", y_high)
         print("x_width", x_width)
@@ -151,31 +151,46 @@ class Sudoku():
                 return 0
 
         def block33_num_resolve(i: int):
-            """ 横列の刺さり具合と縦にあるブロックの中に iがあるかどうかの確認 """
+            """ 縦横列の刺さり具合の確認 """
             block_33_flag = [1] * 9  # block_33_flag[n]のみ1になってほしい
+            
+            """ 既に数字あるなら可能性0に """
             for m, num in enumerate(block_33):
                 if num:
                     block_33_flag[m] = 0
+            #print("check01:", block_33_flag)
+
             """ どこのブロックか、更新に関わる縦横の列の判定 """
             block_num = self.judge_block33(x, y)
-
+            # 縦列の範囲(x座標:0~8)
             tate_group = ((block_num + 2) % 3)
-            x_range = list(range((tate_group - 1) * 3, tate_group * 3))
+            x_range = list(range(tate_group * 3, (tate_group+1) * 3))
 
+            # 横列の範囲(y座標:0~8)
             yoko_group = 0
-            for i in range(1,4):
-                if block_num <= i*3:
-                    yoko_group = i-1
+            for j in range(1,4):
+                if block_num <= j*3:
+                    yoko_group = j-1
                     break
-            y_range = list(range((yoko_group - 1) * 3, yoko_group * 3))
+            y_range = list(range(yoko_group * 3, (yoko_group+1) * 3))
+            
+            """ print("tate_group",tate_group)
+            print("x_range", x_range)
+            print("yoko_group", yoko_group) """
+            print("y_range", y_range)         
 
-
+            """ 縦列による可能性の更新 """
+            tate_ls = self.get_tate_sudoku_list()
+            for x2 in x_range:
+                if i in tate_ls[x2]:
+                    block_33_flag[x2%3::3] = [0]*3
+            
             """ 横列による可能性の更新 """
-            for n, b_flag in enumerate(block_33_flag):
-                if (not b_flag) or (n == y):
-                    continue
-                if i in self.get_yoko_sudoku_list()[n]:
-                    block_33_flag[n] = 0
+            yoko_ls = self.get_yoko_sudoku_list()
+            for m, y2 in enumerate(y_range):
+                if i in yoko_ls[y2]:
+                    block_33_flag[m*3:m*3+3] = [0]*3
+                    print("update", y2)
 
             print("i:", i, "bflags:", block_33_flag, "sum:",
                   sum(block_33_flag))
@@ -194,7 +209,7 @@ class Sudoku():
                 """ 被るならその数字パス """
                 if (i in y_high) or (i in x_width) or (i in block_33):
                     continue
-                # 横列に対して
+                """ # 横列に対して
                 result = yoko_num_resolve(i)
                 if result:
                     return result
@@ -203,7 +218,7 @@ class Sudoku():
                 result = tate_num_resolve(i)
                 if result:
                     return result
-
+ """
                 # 3*3に対して
                 result = block33_num_resolve(i)
                 if result:
@@ -241,10 +256,14 @@ class TestSudoku():
     sudoku_ls = tst_yk_rl # (x, y)=(8, 1)
     """
 
-    tst_tt_rl = [[0, 0, 9, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 3, 1, 4, 0],
-                 [0, 8, 6, 0, 9, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 2],
-                 [0, 0, 0, 5, 0, 0, 0, 0, 8], [4, 0, 0, 0, 0, 9, 0, 0, 0],
-                 [1, 0, 0, 0, 4, 0, 0, 9, 0], [0, 0, 0, 0, 0, 0, 0, 3, 0],
+    tst_tt_rl = [[0, 0, 9, 0, 0, 0, 0, 0, 0], 
+                 [0, 0, 0, 0, 0, 3, 1, 4, 0],
+                 [0, 8, 6, 0, 9, 0, 0, 0, 0], 
+                 [0, 0, 0, 0, 0, 0, 0, 0, 2],
+                 [0, 0, 0, 5, 0, 0, 0, 0, 8], 
+                 [4, 0, 0, 0, 0, 9, 0, 0, 0],
+                 [1, 0, 0, 0, 4, 0, 0, 9, 0], 
+                 [0, 0, 0, 0, 0, 0, 0, 3, 0],
                  [0, 5, 0, 8, 0, 0, 0, 0, 6]]
     sudoku_ls = tst_tt_rl  #(x, y)=(9, 2)
 
@@ -293,7 +312,7 @@ class TestSudoku():
 if __name__ == "__main__":
     test = TestSudoku()
     test.test_yoko()
-    test.test_tate()
+    # test.test_tate()
     test.test_get33()
     # test.test_judge33()
     # test.test_unique()
