@@ -7,7 +7,7 @@ from gene_array import generate_sudoku_list as gsl
 dataframe = pd.read_csv("data/sudoku_string.csv", delimiter=',', header=0)
 value = dataframe.values
 
-i = 0
+i = 0 # csvのi番目の数独を解くように指定
 question_string = value[i][0]
 ans_string = value[i][1]
 url = value[i][2]
