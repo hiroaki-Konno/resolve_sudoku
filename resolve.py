@@ -4,15 +4,6 @@ from gene_array import generate_sudoku_list as gsl
 
 #question_string = "000000000000000027400608000071000300238506419964100750395027800182060974046819205"
 #ans_string = "619732548853941627427658193571294386238576419964183752395427861182365974746819235"
-dataframe = pd.read_csv("data/sudoku_string.csv", delimiter=',', header=0)
-value = dataframe.values
-
-i = 1 # csvのi番目の数独を解くように指定
-question_string = value[i][0]
-ans_string = value[i][1]
-url = value[i][2]
-
-q_sudoku_ls = gsl(question_string)
 """ 
 [0, 0, 0, 0, 0, 0, 0, 0, 0]
 [0, 0, 0, 0, 0, 0, 0, 2, 7]
@@ -24,6 +15,16 @@ q_sudoku_ls = gsl(question_string)
 [1, 8, 2, 0, 6, 0, 9, 7, 4]
 [0, 4, 6, 8, 1, 9, 2, 0, 5]
 """
+
+dataframe = pd.read_csv("data/sudoku_string.csv", delimiter=',', header=0)
+value = dataframe.values
+
+i = 1 # csvのi番目の数独を解くように指定
+question_string = value[i][0]
+ans_string = value[i][1]
+url = value[i][2]
+
+q_sudoku_ls = gsl(question_string)
 ans_sudoku_ls = gsl(ans_string)
 
 
