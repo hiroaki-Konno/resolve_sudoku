@@ -1,3 +1,5 @@
+debug = print
+
 class Sudoku():
 
     def __init__(self, sudoku_ls):
@@ -72,9 +74,9 @@ class Sudoku():
         # 3 * 3 のブロック
         block_33 = self.get33_block()[self.judge_block33(x, y)-1]
 
-        # print("y_high", y_high)
-        # print("x_width", x_width)
-        # print("block_33", block_33)
+        # debug("y_high", y_high)
+        # debug("x_width", x_width)
+        # debug("block_33", block_33)
 
         def pos_resolve():
             """ 縦, 横, 3*3 の全ての数字を洗い出して解決 """
@@ -108,7 +110,7 @@ class Sudoku():
                 if i in self.get_tate_sudoku_list()[n]:
                     y_high_flag[n] = 0
 
-            print("i:", i, "yflags:", y_high_flag, "sum:", sum(y_high_flag))
+            # debug("i:", i, "yflags:", y_high_flag, "sum:", sum(y_high_flag))
             """ 判定返す y_high_flag[x] のみ1ならその数 iで確定 """
             if sum(y_high_flag) == 1:
                 return i
@@ -128,7 +130,7 @@ class Sudoku():
             """ どこのブロック列か判定 """
             block_num = self.judge_block33(x, y) % 3
             x_block33 = self.get33_block()[(block_num + 2) % 3::3]
-            #print(*x_block33, sep="\n")
+            #debug(*x_block33, sep="\n")
             """ ブロック列による可能性の更新 """
             for n, bl in enumerate(x_block33):
                 if i in bl:
@@ -140,7 +142,7 @@ class Sudoku():
                 if i in self.get_yoko_sudoku_list()[n]:
                     x_width_flag[n] = 0
 
-            print("i:", i, "xflags:", x_width_flag, "sum:", sum(x_width_flag))
+            # debug("i:", i, "xflags:", x_width_flag, "sum:", sum(x_width_flag))
             """ 判定返す y_high_flag[x] のみ1ならその数 iで確定 """
             if sum(x_width_flag) == 1:
                 return i
@@ -158,7 +160,7 @@ class Sudoku():
             for m, num in enumerate(block_33):
                 if num:
                     block_33_flag[m] = 0
-            #print("check01:", block_33_flag)
+            #debug("check01:", block_33_flag)
 
             """ どこのブロックか、更新に関わる縦横の列の判定 """
             block_num = self.judge_block33(x, y)
@@ -174,10 +176,10 @@ class Sudoku():
                     break
             y_range = list(range(yoko_group * 3, (yoko_group+1) * 3))
             
-            # print("tate_group",tate_group)
-            # print("x_range", x_range)
-            # print("yoko_group", yoko_group) 
-            # print("y_range", y_range)         
+            # debug("tate_group",tate_group)
+            # debug("x_range", x_range)
+            # debug("yoko_group", yoko_group) 
+            # debug("y_range", y_range)         
 
             """ 縦列による可能性の更新 """
             tate_ls = self.get_tate_sudoku_list()
@@ -190,9 +192,9 @@ class Sudoku():
             for m, y2 in enumerate(y_range):
                 if i in yoko_ls[y2]:
                     block_33_flag[m*3:m*3+3] = [0]*3
-                    # print("update", y2)
+                    # debug("update", y2)
 
-            # print("i:", i, "bflags:", block_33_flag, "sum:", sum(block_33_flag))
+            # debug("i:", i, "bflags:", block_33_flag, "sum:", sum(block_33_flag))
             """ 判定返す y_high_flag[x] のみ1ならその数 iで確定 """
             if sum(block_33_flag) == 1:
                 return i
@@ -208,7 +210,7 @@ class Sudoku():
                 """ 被るならその数字パス """
                 if (i in y_high) or (i in x_width) or (i in block_33):
                     continue
-                """ # 横列に対して
+                # 横列に対して
                 result = yoko_num_resolve(i)
                 if result:
                     return result
@@ -217,7 +219,7 @@ class Sudoku():
                 result = tate_num_resolve(i)
                 if result:
                     return result
- """
+
                 # 3*3に対して
                 result = block33_num_resolve(i)
                 if result:

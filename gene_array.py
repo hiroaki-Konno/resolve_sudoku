@@ -1,5 +1,5 @@
-# 文字列から9*9の配列生成
 def generate_sudoku_list(num: str):
+    """ 文字列から9*9の配列生成 """
     # sudoku = [list(map(int, num[i*9:i*9+9])) for i in range(9)]
     if len(num) != 81:
         return []

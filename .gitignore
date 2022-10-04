@@ -1,5 +1,6 @@
 activate.txt
 *.pdf
+*.png
 src/
 
 # Byte-compiled / optimized / DLL files
