@@ -1,9 +1,3 @@
-# http://www.sudokugame.org/archive/printsudoku.php?nd=3&xh=1 より
-senmon1_num = "000000000000003140086000000000000002000500008400009000100040090000000030050800006"
-
-num = "0" * 81
-
-num = senmon1_num
 # 文字列から9*9の配列生成
 def generate_sudoku_list(num: str):
     # sudoku = [list(map(int, num[i*9:i*9+9])) for i in range(9)]
@@ -11,9 +5,15 @@ def generate_sudoku_list(num: str):
         return []
     return [list(map(int, num[i*9:(i+1)*9])) for i in range(9)]
 
+if __name__ == "__main__":
+    # http://www.sudokugame.org/archive/printsudoku.php?nd=3&xh=1 より
+    senmon1_num = "000000000000003140086000000000000002000500008400009000100040090000000030050800006"
 
-sudoku = generate_sudoku_list(num)
-print(*sudoku, sep="\n")
+    num = "0" * 81
+
+    num = senmon1_num
+    sudoku = generate_sudoku_list(num)
+    print(*sudoku, sep="\n")
 """ 
 [['0', '0', '0', '0', '0', '0', '0', '0', '0'],
  ['0', '0', '0', '0', '0', '3', '1', '4', '0'],

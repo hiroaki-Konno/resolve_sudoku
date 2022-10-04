@@ -72,9 +72,9 @@ class Sudoku():
         # 3 * 3 のブロック
         block_33 = self.get33_block()[self.judge_block33(x, y)-1]
 
-        print("y_high", y_high)
-        print("x_width", x_width)
-        print("block_33", block_33)
+        # print("y_high", y_high)
+        # print("x_width", x_width)
+        # print("block_33", block_33)
 
         def pos_resolve():
             """ 縦, 横, 3*3 の全ての数字を洗い出して解決 """
@@ -174,10 +174,10 @@ class Sudoku():
                     break
             y_range = list(range(yoko_group * 3, (yoko_group+1) * 3))
             
-            """ print("tate_group",tate_group)
-            print("x_range", x_range)
-            print("yoko_group", yoko_group) """
-            print("y_range", y_range)         
+            # print("tate_group",tate_group)
+            # print("x_range", x_range)
+            # print("yoko_group", yoko_group) 
+            # print("y_range", y_range)         
 
             """ 縦列による可能性の更新 """
             tate_ls = self.get_tate_sudoku_list()
@@ -190,10 +190,9 @@ class Sudoku():
             for m, y2 in enumerate(y_range):
                 if i in yoko_ls[y2]:
                     block_33_flag[m*3:m*3+3] = [0]*3
-                    print("update", y2)
+                    # print("update", y2)
 
-            print("i:", i, "bflags:", block_33_flag, "sum:",
-                  sum(block_33_flag))
+            # print("i:", i, "bflags:", block_33_flag, "sum:", sum(block_33_flag))
             """ 判定返す y_high_flag[x] のみ1ならその数 iで確定 """
             if sum(block_33_flag) == 1:
                 return i
@@ -244,7 +243,7 @@ class TestSudoku():
                  [1, 0, 0, 0, 4, 0, 0, 9, 0],
                  [0, 0, 0, 0, 0, 0, 0, 3, 0],
                  [0, 5, 0, 8, 0, 0, 0, 0, 6]] """
-    """ tst_yk_rl = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+    """ test_yoko_resolve = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
                  [0, 0, 9, 0, 0, 3, 1, 4, 0],
                  [0, 8, 6, 0, 9, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 9, 0, 2],
@@ -256,16 +255,16 @@ class TestSudoku():
     sudoku_ls = tst_yk_rl # (x, y)=(8, 1)
     """
 
-    tst_tt_rl = [[0, 0, 9, 0, 0, 0, 0, 0, 0], 
-                 [0, 0, 0, 0, 0, 3, 1, 4, 0],
-                 [0, 8, 6, 0, 9, 0, 0, 0, 0], 
-                 [0, 0, 0, 0, 0, 0, 0, 0, 2],
-                 [0, 0, 0, 5, 0, 0, 0, 0, 8], 
-                 [4, 0, 0, 0, 0, 9, 0, 0, 0],
-                 [1, 0, 0, 0, 4, 0, 0, 9, 0], 
-                 [0, 0, 0, 0, 0, 0, 0, 3, 0],
-                 [0, 5, 0, 8, 0, 0, 0, 0, 6]]
-    sudoku_ls = tst_tt_rl  #(x, y)=(9, 2)
+    test_tate_resolve = [[0, 0, 9, 0, 0, 0, 0, 0, 0], 
+                         [0, 0, 0, 0, 0, 3, 1, 4, 0],
+                         [0, 8, 6, 0, 9, 0, 0, 0, 0], 
+                         [0, 0, 0, 0, 0, 0, 0, 0, 2],
+                         [0, 0, 0, 5, 0, 0, 0, 0, 8], 
+                         [4, 0, 0, 0, 0, 9, 0, 0, 0],
+                         [1, 0, 0, 0, 4, 0, 0, 9, 0], 
+                         [0, 0, 0, 0, 0, 0, 0, 3, 0],
+                         [0, 5, 0, 8, 0, 0, 0, 0, 6]]
+    sudoku_ls = test_tate_resolve  #(x, y)=(9, 2)
 
     def __init__(self) -> None:
         self.sudoku = Sudoku(TestSudoku.sudoku_ls)
